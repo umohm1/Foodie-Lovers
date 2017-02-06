@@ -1,4 +1,4 @@
-class ReviewController < ApplicationController
+class ReviewsController < ApplicationController
 
   # GET: /reviews
   get "/reviews" do
