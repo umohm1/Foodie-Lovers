@@ -5,6 +5,6 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 
-use ReviewController
-use UserController
+use ReviewsController
+use UsersController
 run ApplicationController
