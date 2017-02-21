@@ -1,5 +1,16 @@
 class UsersController < ApplicationController
 
+
+  get "/users" do
+    @users = User.all
+    erb :"users/index"
+  end
+
+  get "/users/:id" do
+    @user = User.find_by_id(params[:id])
+    erb :"users/show"
+  end
+
   # GET: /
   get "/signup" do
     if !logged_in
@@ -16,11 +27,6 @@ class UsersController < ApplicationController
   # POST: /
   post "/users" do
     redirect "/"
-  end
-
-  # GET: //5
-  get "/users/:id" do
-    erb :"//show.html"
   end
 
   # GET: //5/edit
