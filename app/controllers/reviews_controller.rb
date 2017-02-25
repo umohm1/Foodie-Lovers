@@ -1,37 +1,75 @@
 class ReviewsController < ApplicationController
 
-  # GET: /reviews
-  get "/reviews" do
-    erb :"/reviews/index.html"
+
+  get '/reviews' do
+    if logged_in?
+      erb :'reviews/index'
+    else
+      redirect '/login'
+    end
   end
 
-  # GET: /reviews/new
-  get "/reviews/new" do
-    erb :"/reviews/new.html"
+  get '/reviews/new' do
+    if logged_in?
+      erb :'reviews/new'
+    else
+      redirect '/login'
   end
 
-  # POST: /reviews
-  post "/reviews" do
-    redirect "/reviews"
+  post '/reviews' do
+    if params[:username].empty? || params[:password].empty?
+      redirect '/reviews/new'
+    else
+      user = current_user
+      @review = Review.create(
+      :title => params[:title],
+      :descripton => params[:description],
+      :rating => params[:rating],
+      :user_id => :user_id)
+      redirect '/reviews/#{@review.id}'
+    end
   end
 
-  # GET: /reviews/5
-  get "/reviews/:id" do
-    erb :"/reviews/show.html"
+  get '/reviews/:id' do #shows single review
+    if logged_in?
+      @review = Review.find_by_id(params[:id])
+      erb :'reviews/show'
+    else
+      redirect '/login'
+    end
   end
 
-  # GET: /reviews/5/edit
-  get "/reviews/:id/edit" do
-    erb :"/reviews/edit.html"
+  get '/reviews/:id/edit' do #user can view edit form only if logged in
+    if logged_in?
+      @review = Review.find_by_id(params[:id])
+      if @review.user_id == session[:user_id]
+        erb :'reviews/edit'
+      else
+        redirect '/login'
+      end
+    end
   end
 
-  # PATCH: /reviews/5
-  patch "/reviews/:id" do
-    redirect "/reviews/:id"
+  patch '/reviews/:id' do
+    @review = Review.find_by_id(params[:id])
+    if params[:username].empty && params[:password].empty?
+      @review.assign_attributes(params[:review])
+      @review.save
+      redirect '/reviews'
+    else
+      redirect '/reviews/#{params[:id]}/edit'
+    end
   end
 
-  # DELETE: /reviews/5/delete
-  delete "/reviews/:id/delete" do
-    redirect "/reviews"
+  delete '/reviews/:id/delete' do
+    if logged_in?
+      @review = Review.find_by_id(params[:id])
+      if @review.user_id == session[:user_id]
+        @review.destroy
+      end
+      redirect '/reviews'
+    else
+      redirect '/login'
+    end
   end
-end
+end 

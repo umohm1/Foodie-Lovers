@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  get '/signup' do
-    if !logged_in
+  get '/sign_up' do
+    if !logged_in?
       erb :'users/create_user'
     else
       redirect '/reviews'
@@ -43,5 +43,5 @@ class UsersController < ApplicationController
     else
       redirect '/'
     end
-  end 
+  end
 end
