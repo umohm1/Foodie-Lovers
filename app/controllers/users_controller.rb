@@ -1,47 +1,22 @@
 class UsersController < ApplicationController
 
-
-  get "/users" do
-    @users = User.all
-    erb :"users/index"
-  end
-
-  get "/users/:id" do
-    @user = User.find_by_id(params[:id])
-    erb :"users/show"
-  end
-
-  # GET: /
-  get "/signup" do
+  get '/signup' do
     if !logged_in
-    erb :index
-  else
-    redirect '/reviews'
+      erb :'users/create_user'
+    else
+      redirect '/reviews'
+    end
   end
 
-  # GET: //new
-  get "/users/new" do
-    erb :"//new.html"
-  end
+  post 'signup' do
+    if params[:username].empty? || params[:password].empty?
+      redirect '/signup'
+    else
+      @user = User.create(username: params[:username], password: params[:password])
+      session[:user_id] = @user_id
+      redirect '/reviews'
+    end
+  end 
 
-  # POST: /
-  post "/users" do
-    redirect "/"
-  end
 
-  # GET: //5/edit
-  get "/users/:id/edit" do
-    erb :"//edit.html"
-  end
-
-  # PATCH: //5
-  patch "/users/:id" do
-    redirect "//:id"
-  end
-
-  # DELETE: //5/delete
-  delete "/users/:id/delete" do
-    redirect "/"
-  end
-end
 end
