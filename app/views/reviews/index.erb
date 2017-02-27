@@ -1,0 +1,7 @@
+<h2>Welcome, @user.username</h2>
+
+<% @reviews.each do |review| %>
+Title: <%= review.title %>
+Description: <%= review.description %>
+Rating: <%= review.rating %>
+<% end %>

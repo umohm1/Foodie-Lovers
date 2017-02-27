@@ -5,8 +5,10 @@
 
 
 Please
+<% if !current_user %>
 <p><a href='/login'>Log In</a></p>
 
 Or
 
-<p><a href='/signup'>Sign-Up</a></p>
+<p><a href='/signup'>Sign-Up</a></p> 
+<% end %>
