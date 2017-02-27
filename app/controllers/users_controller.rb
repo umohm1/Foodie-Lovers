@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  get '/sign_up' do
+  get '/signup' do
     if !logged_in?
       erb :'users/create_user'
     else
