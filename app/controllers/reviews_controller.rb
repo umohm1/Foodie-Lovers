@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
       redirect '/login'
     end
   end
-  
+
   get '/reviews/new' do
    if logged_in?
      erb :'reviews/new'
