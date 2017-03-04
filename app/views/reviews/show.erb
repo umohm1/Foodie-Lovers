@@ -1,6 +1,6 @@
 <h2> <%= @review.title %> </h2>
 
-<p>Description: <%= @review.content %></p>
+<p>Description: <%= @review.description %></p>
 <p>Rating: <%= @review.rating %></p>
 
 <form action="/reviews/<%=@review.id%>/delete" method="post">
@@ -9,6 +9,7 @@
 
 </form>
 
+<br></br>
 
 <p><a href='/reviews/<%=@review.id%>/edit'>Edit Review</a></p>
 <p><a href='/logout'>Log Out</a></p>

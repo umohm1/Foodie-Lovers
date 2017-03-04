@@ -1,7 +1,12 @@
 <h2>Welcome, <%= current_user.username %></h2>
 
+<div>
 <% @reviews.each do |review| %>
-Title: <%= review.title %>
-Description: <%= review.description %>
-Rating: <%= review.rating %>
+<p>Title: <%= review.title %></p>
+<p>Description: <%= review.description %></p>
+<p>Rating: <%= review.rating %></p>
+<br></br>
 <% end %>
+</div>
+
+<p><a href='/logout'>Log Out</a></p>

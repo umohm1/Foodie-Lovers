@@ -18,16 +18,16 @@ class ReviewsController < ApplicationController
  end
 
  post '/reviews' do
-   if params[:username].empty? || params[:password].empty?
+   if params[:title].empty? || params[:description].empty? || params[:rating].empty?
      redirect '/reviews/new'
    else
      user = current_user
      @review = Review.create(
      :title => params[:title],
-     :descripton => params[:description],
+     :description => params[:description],
      :rating => params[:rating],
      :user_id => :user_id)
-     redirect '/reviews/#{@review.id}'
+     redirect "/reviews/#{@review.id}"
    end
  end
 
@@ -44,7 +44,7 @@ class ReviewsController < ApplicationController
    if logged_in?
      @review = Review.find_by_id(params[:id])
      if @review.user_id == session[:user_id]
-       erb :'reviews/show'
+       erb :'reviews/edit'
      else
        redirect '/reviews'
      end
