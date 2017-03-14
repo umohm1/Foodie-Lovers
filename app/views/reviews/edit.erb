@@ -3,9 +3,9 @@
 <form action="/reviews/<%=@review.id%>" method="POST">
    <input id="hidden" type="hidden" name="_method" value="patch">
 
-   Title: <input type="text" name="title" value="<%= @review.title %>">
-   Description: <input type="text" name="description" value="<%= @review.description %>">
-   Rating: <input type="text" name="rating" value="<%= @review.rating %>">
+   Title: <input type="text" name="review[title]" value="<%= @review.title %>">
+   Description: <input type="text" name="review[description]" value="<%= @review.description %>">
+   Rating: <input type="text" name="review[rating]" value="<%= @review.rating %>">
    <input type="submit" value="Save Review">
 </form>
 

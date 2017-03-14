@@ -5,8 +5,12 @@
 <p>Title: <%= review.title %></p>
 <p>Description: <%= review.description %></p>
 <p>Rating: <%= review.rating %></p>
+<p> <a href="reviews/ #{review.id} /edit">Edit Review</a> </p>
+
 <br></br>
 <% end %>
 </div>
+
+<p><a href='reviews/new'>Create a Review</a><p>
 
 <p><a href='/logout'>Log Out</a></p>

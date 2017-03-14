@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
      :title => params[:title],
      :description => params[:description],
      :rating => params[:rating],
-     :user_id => :user_id)
+     :user_id => user.id)
      redirect "/reviews/#{@review.id}"
    end
  end
@@ -55,16 +55,17 @@ class ReviewsController < ApplicationController
 
 
  patch '/reviews/:id' do
-   @review = Review.find_by_id(params[:id])
-   if params[:username].empty && params[:password].empty?
-     @review.assign_attributes(params[:review])
+  @review = current_user.reviews.find_by_id(params[:id])
+  #  @review = Review.find_by_id(params[:id])
+  if @review
+    @review.assign_attributes(params[:review])
    if @review.save
      redirect '/reviews'
    else
      erb :'reviews/edit'
    end
    else
-     redirect '/reviews/#{params[:id]}/edit'
+     redirect '/reviews'
    end
  end
 
