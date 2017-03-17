@@ -32,6 +32,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id   #log them in
       redirect '/reviews' #show them their reviews
     else
+      flash[:message] = "Your username or password were incorrect. Please try again."
       erb :'users/login'
     end
   end
