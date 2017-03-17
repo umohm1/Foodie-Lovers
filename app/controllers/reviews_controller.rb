@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 
+
   get '/reviews' do
     if logged_in?
       @user_reviews = current_user.reviews
@@ -20,6 +21,7 @@ class ReviewsController < ApplicationController
 
  post '/reviews' do
    if params[:title].empty? || params[:description].empty? || params[:rating].empty?
+     flash[:message] = "Sorry! Reviews must have a title, description, and rating. Please try again."
      redirect '/reviews/new'
    else
      user = current_user

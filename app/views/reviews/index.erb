@@ -22,7 +22,7 @@
 
 <h2>Check Out What Others Are Saying!</h2>
 <div>
-  <%if @reviews != nil #&& @review.user_id != @user.id%>
+  <%if @reviews != nil %>
 <% @reviews.each do |review| %>
 <p>Title: <%= review.title %></p>
 <p>Description: <%= review.description %></p>
