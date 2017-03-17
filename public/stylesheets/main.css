@@ -9,18 +9,18 @@
   html, body {
     height: 100%;
     width: 100%;
+    background-image: url('https://s3-us-west-1.amazonaws.com/realisticshots/2016/0225.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
   }
 
   /* --- Welcome Page Styles --- */
-  body {
-    background-color: lightblue;
-    color: #333;
-    font-family: Sans-Serif;
-    line-height: 18px;
-  }
+
 
   .wrapper {
     background: #eee;
+    opacity: 0.8;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
