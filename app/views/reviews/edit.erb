@@ -9,4 +9,10 @@
    <input type="submit" value="Save Review">
 </form>
 
+<form action="/reviews/<%=@review.id%>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete This Review">
+
+</form>
+
 <p><a href='/logout'>Log Out</a></p>

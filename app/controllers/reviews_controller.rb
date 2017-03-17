@@ -2,7 +2,8 @@ class ReviewsController < ApplicationController
 
   get '/reviews' do
     if logged_in?
-      @reviews = Review.all
+      @user_reviews = current_user.reviews
+      @reviews = Review.where.not(user_id: current_user.id)
       erb :'reviews/index'
     else
       redirect '/login'

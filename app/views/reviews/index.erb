@@ -1,16 +1,34 @@
 <h2>Welcome, <%= current_user.username %></h2>
 
+<h3>Your Reviews</h3>
+</br>
+
+  <% @user_reviews.each do |review| %>
+
+  <div>
+     <p>Title: <%= review.title %></p>
+     <p>Description: <%= review.description %></p>
+     <p>Rating: <%= review.rating %></p>
+     <p><a href="/reviews/<%= review.id %>/edit"> Edit Review</a></p>
+   </div>
+ <% end %>
+
+ <p><a href='reviews/new'>Create a Review</a><p>
+
+ <p><a href='/logout'>Log Out</a></p>
+
+</br>
+
+
+<h2>Check Out What Others Are Saying!</h2>
 <div>
+  <%if @reviews != nil #&& @review.user_id != @user.id%>
 <% @reviews.each do |review| %>
 <p>Title: <%= review.title %></p>
 <p>Description: <%= review.description %></p>
 <p>Rating: <%= review.rating %></p>
-<p> <a href="reviews/ #{review.id} /edit">Edit Review</a> </p>
 
 <br></br>
 <% end %>
 </div>
-
-<p><a href='reviews/new'>Create a Review</a><p>
-
-<p><a href='/logout'>Log Out</a></p>
+<% end %>
