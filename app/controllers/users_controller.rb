@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username].empty? || params[:password].empty? #no sign-up w/o username or pw
+      flash[:message] = "Your username or password can't be empty."
       redirect '/signup'
     else
       @user = User.create(username: params[:username], password: params[:password])
