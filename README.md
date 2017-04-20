@@ -5,9 +5,9 @@
 ### Installation and Usage
 
 1. Fork and clone this repo
-2. Install dependencies using 'bundle install'
-3. Run 'rake db:migrate'
-3. Run shotgun to view in your browser
+2. Install dependencies using `bundle install`
+3. Run `rake db:migrate`
+4. Run shotgun to view in your browser
 
 ### Contributing
 
