@@ -3,7 +3,7 @@
 <p>Description: <%= @review.description %></p>
 <p>Rating: <%= @review.rating %></p>
 
-<% if current_user %>
+<% if @review.user == current_user %>
 <p><a href='/reviews/<%=@review.id%>/edit'>Edit Review</a></p>
 <form action="/reviews/<%=@review.id%>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
