@@ -21,7 +21,6 @@ class ReviewsController < ApplicationController
 
  post '/reviews' do
    review = current_user.reviews.build(params)
-
    if review.save
      redirect "/reviews/#{review.id}"
    else
