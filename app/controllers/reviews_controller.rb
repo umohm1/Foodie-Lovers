@@ -20,17 +20,13 @@ class ReviewsController < ApplicationController
  end
 
  post '/reviews' do
-   if params[:title].empty? || params[:description].empty? || params[:rating].empty?
+   review = current_user.reviews.build(params)
+
+   if review.save
+     redirect "/reviews/#{review.id}"
+   else
      flash[:message] = "Sorry! Reviews must have a title, description, and rating. Please try again."
      redirect '/reviews/new'
-   else
-     user = current_user
-     @review = Review.create(
-     :title => params[:title],
-     :description => params[:description],
-     :rating => params[:rating],
-     :user_id => user.id)
-     redirect "/reviews/#{@review.id}"
    end
  end
 
@@ -61,8 +57,7 @@ class ReviewsController < ApplicationController
   @review = current_user.reviews.find_by_id(params[:id])
   #  @review = Review.find_by_id(params[:id])
   if @review
-    @review.assign_attributes(params[:review])
-   if @review.save
+    if @review.update(params[:review])
      redirect '/reviews'
    else
      erb :'reviews/edit'

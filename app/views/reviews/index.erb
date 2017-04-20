@@ -6,7 +6,7 @@
   <% @user_reviews.each do |review| %>
 
   <div>
-     <p>Title: <%= review.title %></p>
+     <p>Title: <a href="/reviews/<%=review.id%>"><%= review.title %></a>
      <p>Description: <%= review.description %></p>
      <p>Rating: <%= review.rating %></p>
      <p><a href="/reviews/<%= review.id %>/edit"> Edit Review</a></p>
@@ -24,6 +24,7 @@
 <div>
   <%if @reviews != nil %>
 <% @reviews.each do |review| %>
+<p>User: <%=User.find(review.user_id).username%></p>
 <p>Title: <%= review.title %></p>
 <p>Description: <%= review.description %></p>
 <p>Rating: <%= review.rating %></p>
