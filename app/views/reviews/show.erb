@@ -3,14 +3,16 @@
 <p>Description: <%= @review.description %></p>
 <p>Rating: <%= @review.rating %></p>
 
+<% if current_user %>
+<p><a href='/reviews/<%=@review.id%>/edit'>Edit Review</a></p>
 <form action="/reviews/<%=@review.id%>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete This Review">
 
 </form>
+<% end %>
 
 <br></br>
 
-<p><a href='/reviews'>All Reviews<a></p> 
-<p><a href='/reviews/<%=@review.id%>/edit'>Edit Review</a></p>
+<p><a href='/reviews'>All Reviews<a></p>
 <p><a href='/logout'>Log Out</a></p>

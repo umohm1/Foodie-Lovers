@@ -9,15 +9,24 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if params[:username].empty? || params[:password].empty? #no sign-up w/o username or pw
-      flash[:message] = "Your username or password can't be empty."
-      redirect '/signup'
-    else
-      @user = User.create(username: params[:username], password: params[:password])
-      session[:user_id] = @user.id
-      redirect '/reviews'
-    end
-  end
+    @user = User.new(params)
+     if @user.save
+       session[:user_id] = @user.id
+       redirect '/reviews'
+     else
+       flash[:message] = @user.errors.full_messages.join(", ")
+       redirect '/signup'
+     end
+   end
+    # if params[:username].empty? || params[:password].empty? #no sign-up w/o username or pw
+    #   flash[:message] = "Your username or password can't be empty."
+    #   redirect '/signup'
+    # else
+    #   @user = User.create(username: params[:username], password: params[:password])
+    #   session[:user_id] = @user.id
+    #   redirect '/reviews'
+    # end
+
 
   get '/login' do
     if logged_in?
@@ -46,4 +55,4 @@ class UsersController < ApplicationController
       redirect '/'
     end
   end
-end
+end 
