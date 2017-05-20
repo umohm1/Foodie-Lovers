@@ -1,4 +1,4 @@
-## Restaurant-Review
+## Foodie Lovers 
 
 ### Sinatra CRUD app for Restaurant Reviews
 
