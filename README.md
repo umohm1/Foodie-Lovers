@@ -2,8 +2,6 @@
 
 ### Sinatra CRUD app for Restaurant Reviews
 
-(https://youtu.be/OpkbRAYRC8k)
-
 ### Installation and Usage
 
 1. Fork and clone this repo
